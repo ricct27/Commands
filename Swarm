@@ -1,7 +1,28 @@
 https://www.youtube.com/watch?v=KC4Ad1DS8xU
+https://blog.programster.org/docker-swarm-cheatsheet
+https://docs.docker.com/get-started/
+
 docker node ls
 
-docker swarm init --listen-addr 192.168.1.1:2377  // Master:address and port where to listen
-docker swarm join 192.168.1.1:2377 // Worker
+docker swarm init // master
+docker swarm join --token ....   // use the token from the master's initialization infodocker swarm join --token SWMTKN-1-5a7wi4sj7ro05m2u3tpmi3tprvbwk72j07oauvua2ru3o5ua81-cyqd745lbtyla1h5xmu6dt679 192.168.1.1:2377
 
+Services concept: I wanna run this type of container, but i'm not going to start and and manage the individual instances. I want the swarm to do that for me.
+
+docker service create
+	--name ping00 		// service name
+	alpine 			// docker image
+	ping docker-swarm-00	// info
+
+
+docker service create 
+	--name ping1 		// service name
+	--replicas=2 		// nr of nodes 
+	alexellis2/arm-pingcurl // docker image
+	ping google.com		// info
+
+
+docker service ps <service_name>  //  List the tasks of one or more services
+
+docker logs -f <cont_id> 		  // to see the output of task, try -f 
 
