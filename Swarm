@@ -1,28 +1,33 @@
-https://www.youtube.com/watch?v=KC4Ad1DS8xU
-https://blog.programster.org/docker-swarm-cheatsheet
-https://docs.docker.com/get-started/
+https:#www.youtube.com/watch?v=KC4Ad1DS8xU
+https:#blog.programster.org/docker-swarm-cheatsheet
+https:#docs.docker.com/get-started/
 
 docker node ls
 
-docker swarm init // master
-docker swarm join --token ....   // use the token from the master's initialization infodocker swarm join --token SWMTKN-1-5a7wi4sj7ro05m2u3tpmi3tprvbwk72j07oauvua2ru3o5ua81-cyqd745lbtyla1h5xmu6dt679 192.168.1.1:2377
+docker swarm init # master
+docker swarm join --token ....   # use the token from the master's initialization infodocker swarm join --token SWMTKN-1-5a7wi4sj7ro05m2u3tpmi3tprvbwk72j07oauvua2ru3o5ua81-cyqd745lbtyla1h5xmu6dt679 192.168.1.1:2377
 
-Services concept: I wanna run this type of container, but i'm not going to start and and manage the individual instances. I want the swarm to do that for me.
+#Services concept: I wanna run this type of container, but i'm not going to start and and manage the individual instances. I want the swarm to do that for me.
 
 docker service create
-	--name ping00 		// service name
-	alpine 			// docker image
-	ping docker-swarm-00	// info
+	--name ping00 		# service name
+	alpine 			# docker image
+	ping as.com	# command
 
 
-docker service create 
-	--name ping1 		// service name
-	--replicas=2 		// nr of nodes 
-	alexellis2/arm-pingcurl // docker image
-	ping google.com		// info
+docker service create
+	--name ping1 		# service name
+	--replicas=2 		# nr of nodes
+	alexellis2/arm-pingcurl # docker image
+	ping  google.com		# command
 
 
-docker service ps <service_name>  //  List the tasks of one or more services
+docker service ls									# List all the services
 
-docker logs -f <cont_id> 		  // to see the output of task, try -f 
+docker service ps <service_name>  #  List the tasks of one or more services
 
+docker logs -f <cont_id> 		  # to see the output of task, try -f
+
+docker ps 										# check which containers are running
+
+docker swarm leave --force # how to exit from swarm
