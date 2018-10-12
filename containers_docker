@@ -18,6 +18,12 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 
+docker run alpine
+    echo "hello from alpine"  # command to run in the container
+
+docker run -it                # interactive way
+    alpine /bin/sh
+
 docker build -t friendlyhello .  # Create image using this directory's Dockerfile
 docker run -p 4000:80 friendlyhello  # Run "friendlyname" mapping port 4000 to 80
 docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
@@ -44,8 +50,9 @@ docker run username/repository:tag                   # Run image from a registry
 
 # A single container running in a service is called a task.
 
-ocker stack ls                                            # List stacks or apps
-docker stack deploy -c <composefile> <appname>  # Run the specified Compose file
+ocker stack ls                                # List stacks or apps
+#docker stack deploy -c docker-compose.yml getstartedlab
+docker stack deploy -c <composefile .yml> < assign an appname>  # Run the specified Compose file
 docker service ls                 # List running services associated with an app
 docker service ps <service>                  # List tasks associated with an app
 docker inspect <task or container>                   # Inspect task or container
@@ -56,7 +63,7 @@ docker swarm leave --force      # Take down a single node swarm from the manager
 
 # A swarm is a group of machines that are running Docker and joined into a cluster.
 
-# Running Docker Swarm Visualizer
+# Running Docker Swarm Visualizer ,  On brouser http://localhost:8080/
 docker service create \
   --name=viz \
   --publish=8080:8080/tcp \
@@ -66,34 +73,12 @@ docker service create \
 
 
 
+docker node ls         # List the nodes in your swarm
+docker node inspect <node ID>        # Inspect a node
+docker swarm join-token -q worker   # View join token
+docker node ls                # View nodes in swarm (while logged on to manager)
+docker swarm leave  # Make the worker leave the swarm
+docker swarm leave -f # Make master leave, kill swarm
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+# A stack is a group of interrelated services that share dependencies,
+#and can be orchestrated and scaled together.
